@@ -9,5 +9,5 @@ app.use(express.json());
 
 // Run the server
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`)
+  console.log(`Listening on port ${port} :D`)
 });
