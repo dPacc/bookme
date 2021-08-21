@@ -1,6 +1,9 @@
 import express from "express";
 
 import { currentUserRouter } from "./routes/current-user";
+import { signinRouter } from "./routes/signin";
+import { signoutRouter } from "./routes/signout";
+import { signupRouter } from "./routes/signup";
 
 // Create the app instance
 const app = express();
@@ -12,8 +15,11 @@ app.use(express.json());
 
 // Routes
 app.use(currentUserRouter);
+app.use(signinRouter);
+app.use(signoutRouter);
+app.use(signupRouter);
 
 // Run the server
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`)
+  console.log(`Listening on port ${port}!!!`)
 });
