@@ -1,6 +1,7 @@
 import express from "express";
 import "express-async-errors";
 import mongoose from "mongoose";
+import cookieSession from "cookie-session";
 
 import { currentUserRouter } from "./routes/current-user";
 import { signinRouter } from "./routes/signin";
@@ -26,7 +27,14 @@ mongoose
   .catch((err) => console.log(`DB connection error - ${err}`));
 
 // Middlewares
+app.set("trust proxy", true);
 app.use(express.json());
+app.use(
+  cookieSession({
+    signed: false,
+    secure: true,
+  })
+);
 
 // Routes
 app.use(currentUserRouter);
