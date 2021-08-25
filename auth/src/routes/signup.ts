@@ -1,13 +1,15 @@
 import express, { Request, Response } from "express";
-import { User } from "../models/user";
 import { body, validationResult } from "express-validator";
+import jwt from "jsonwebtoken";
+
+import { User } from "../models/user";
 import { RequestValidationError } from "../errors/request-validation-error";
 import { BadRequestError } from "./../errors/bad-request-error";
 
 const router = express.Router();
 
 // Route
-router.get(
+router.post(
   "/api/users/signup",
   [
     body("email").isEmail().withMessage("Invalid email"),
@@ -35,6 +37,14 @@ router.get(
     // Create new user and save to db
     const user = User.build({ email, password });
     await user.save();
+
+    // Generate JWT
+    const userJwt = jwt.sign({ id: user.id, email: user.email }, "asdasdweda");
+
+    // Store JWT on session
+    req.session = {
+      jwt: userJwt,
+    };
 
     return res.status(201).send(user);
   }
