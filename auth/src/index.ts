@@ -15,6 +15,11 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
+// Check for JWT secret
+if (!process.env.JWT_KEY) {
+  throw new Error("JWT_KEY must be set");
+}
+
 // Connect to the database
 mongoose
   .connect("mongodb://auth-mongo-srv:27017/auth", {
