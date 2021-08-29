@@ -12,11 +12,6 @@ import { NotFoundError } from "./errors/not-found-error";
 // Create the app instance
 const app = express();
 
-// Check for JWT secret
-if (!process.env.JWT_KEY) {
-  throw new Error("JWT_KEY must be set");
-}
-
 // Middlewares
 app.set("trust proxy", true);
 app.use(express.json());
