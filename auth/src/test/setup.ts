@@ -6,11 +6,14 @@ let mongo: any;
 
 // Mongo Hook
 beforeAll(async () => {
-  // Create a new MongoDB instance
-  mongo = new MongoMemoryServer();
-  const mongoUri = await mongo.getUri();
+  // Set JWT environment variables
+  process.env.JWT_KEY = "asdasdasdasdf";
 
-  await mongoose.connect(mongoUri, {
+  // Create a new MongoDB instance
+  mongo = await MongoMemoryServer.create();
+  const uri = mongo.getUri();
+
+  await mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
