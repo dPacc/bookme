@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const LandingPage = ({ currentUser }) => {
-  console.log("I am in the component", currentUser);
+  console.log("I am in the currentUser", currentUser);
 
   return (
     <div>
@@ -12,16 +12,14 @@ const LandingPage = ({ currentUser }) => {
 
 // This part gets executed in the server side render
 // There is a case where it gets executed on the browser side as well when there is a page navigation
-LandingPage.getInitialProps = async () => {
+LandingPage.getInitialProps = async ({ req }) => {
   if (typeof window === "undefined") {
     // We are on the server
     // Requests should be made to http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser
     const { data } = await axios.get(
       "http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser",
       {
-        headers: {
-          Host: "bookme.dev",
-        },
+        headers: req.headers,
       }
     );
     return data;
