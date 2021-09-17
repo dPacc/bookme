@@ -6,3 +6,7 @@ auth/node_modules
 # Client
 client/node_modules
 client/.next
+
+# Common code
+common/node_modules
+common/.git
