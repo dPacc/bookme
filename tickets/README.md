@@ -1,6 +1,4 @@
-# Auth Service
-
-![authService]("./../images/authService.png)
+# Tickets Service
 
 ## Dependencies
 

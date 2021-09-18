@@ -8,9 +8,14 @@ if (!process.env.JWT_KEY) {
   throw new Error("JWT_KEY must be set");
 }
 
+// Check for tickets MongoDB URI
+if (!process.env.MONGO_URI) {
+  throw new Error("TICKETS MONGO URI NOT SET!");
+}
+
 // Connect to the database
 mongoose
-  .connect("mongodb://auth-mongo-srv:27017/auth", {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
