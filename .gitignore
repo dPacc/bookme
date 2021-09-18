@@ -9,3 +9,6 @@ client/.next
 
 # Common code
 common/node_modules
+
+# Tickets server
+tickets/node_modules
