@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 interface TicketAttrs {
   title: string;
   price: number;
-  useeId: string;
+  userId: string;
 }
 
 // An interface that describes properties that ticket document has
@@ -39,7 +39,6 @@ const ticketSchema = new mongoose.Schema(
       transform(doc, ret, options) {
         ret.id = ret._id;
         delete ret._id;
-        delete ret.__v;
       },
     },
   }
