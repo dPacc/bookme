@@ -8,7 +8,7 @@ const createTicket = () => {
   });
 };
 
-// Test
+// Test fetch all tickets
 it("can fetch a list of tickets", async () => {
   await createTicket();
   await createTicket();
