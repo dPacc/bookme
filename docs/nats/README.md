@@ -15,3 +15,29 @@ Where NATS provides at most once quality of service, streaming adds at least onc
 In other words, **NATS Streaming introduces message persistence & message delivery guarantees**.
 
 (**Reference**: <https://gcoolinfo.medium.com/comparing-nats-nats-streaming-and-nats-jetstream-ec2d9f426dc8>)
+
+## Communication
+
+The communication between our services and STAN will happen using **node-nats-streaming**
+
+![comm](./images/nodeNatsStreaming.png)
+
+Our services need to subscribe to specific channels (like topics in kafka)
+
+![comm](./images/subChannel.png)
+
+## Storage of Events
+
+NATS Streaming can store events 2 ways: -
+
+- In memory (default)
+
+![memory](./images/inMemory.png)
+
+- File/MySQL/Postgres
+
+![others](./images/mysqlPost.png)
+
+## Overview of Flow
+
+![flow](./images/completeFlow.png)

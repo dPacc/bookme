@@ -12,3 +12,6 @@ common/node_modules
 
 # Tickets server
 tickets/node_modules
+
+# NATS test
+nats-test/node_modules
