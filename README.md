@@ -9,7 +9,8 @@ A ticket booking micro-service application
 - Server: ExpressJS
 - Client: NextJS
 - Database: MongoDB, Redis
-- Stream Processing: NATS (Event Bus)
+- Event Streaming: NATS (Event Bus)
+- Dev Ops: Docker, Kubernetes
 
 ## Design
 
