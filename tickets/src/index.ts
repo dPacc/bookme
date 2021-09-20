@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { app } from "./app";
+import { natsWrapper } from "./nats-wrapper";
 
 const port = process.env.PORT || 3000;
 
@@ -12,6 +13,8 @@ if (!process.env.JWT_KEY) {
 if (!process.env.MONGO_URI) {
   throw new Error("TICKETS MONGO URI NOT SET!");
 }
+// Connect to NATS
+natsWrapper.connect("bookme", "asdeasd", "http://nats-srv:4222");
 
 // Connect to the database
 mongoose
