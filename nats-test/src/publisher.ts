@@ -9,7 +9,7 @@ stan.on("connect", () => {
 
   const data = JSON.stringify({
     id: 123,
-    title: "lbasda",
+    title: "concert",
     price: 232,
   });
 
