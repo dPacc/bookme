@@ -15,6 +15,18 @@ if (!process.env.MONGO_URI) {
 }
 // Connect to NATS
 natsWrapper.connect("bookme", "asdeasd", "http://nats-srv:4222");
+natsWrapper.client.on("close", () => {
+  console.log("NATS connection closed");
+  process.exit();
+});
+
+process.on("SIGINT", () => {
+  natsWrapper.client.close();
+});
+
+process.on("SIGTERM", () => {
+  natsWrapper.client.close();
+});
 
 // Connect to the database
 mongoose
