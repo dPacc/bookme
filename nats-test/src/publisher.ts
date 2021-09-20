@@ -9,8 +9,8 @@ stan.on("connect", () => {
 
   const data = JSON.stringify({
     id: 123,
-    title: "lbasda",
-    price: 232,
+    name: "lbasda",
+    cost: 232,
   });
 
   stan.publish("ticket:created", data, () => {

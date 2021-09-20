@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "publish": "ts-node-dev --notify false src/publisher.ts",
-    "subscribe": "ts-node-dev --notify false src/subscriber.ts"
+    "listen": "ts-node-dev --notify false src/listener.ts"
   },
   "keywords": [],
   "author": "dPacc",
