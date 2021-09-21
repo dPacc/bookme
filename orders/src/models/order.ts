@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import { OrderStatus } from "@netraga/common";
 import { TicketDoc } from "./ticket";
 
+export { OrderStatus };
+
 // An interface that describes properties required to create a new order
 interface OrderAttrs {
   userId: string;
