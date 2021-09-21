@@ -21,10 +21,10 @@ mongoose
     useFindAndModify: false,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.log(`DB connection error - ${err}`));
+  .then(() => console.log("[Auth] Connected to MongoDB"))
+  .catch((err) => console.log(`[Auth] DB connection error - ${err}`));
 
 // Run the server
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+  console.log(`[Auth] Listening on port ${port}`);
 });

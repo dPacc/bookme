@@ -5,7 +5,7 @@ class NatsWrapper {
 
   get client() {
     if (!this._client) {
-      throw new Error("[Tickets] Cannot access NATS client before connecting");
+      throw new Error("[Orders] Cannot access NATS client before connecting");
     }
 
     return this._client;
@@ -16,7 +16,7 @@ class NatsWrapper {
 
     return new Promise<void>((resolve, reject) => {
       this.client.on("connect", () => {
-        console.log("[Tickets] Connected to NATS");
+        console.log("[Orders] Connected to NATS");
         resolve();
       });
 

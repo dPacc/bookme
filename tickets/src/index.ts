@@ -37,7 +37,7 @@ natsWrapper.connect(
 );
 
 natsWrapper.client.on("close", () => {
-  console.log("NATS connection closed");
+  console.log("[Tickets] NATS connection closed");
   process.exit();
 });
 
@@ -57,10 +57,10 @@ mongoose
     useFindAndModify: false,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.log(`DB connection error - ${err}`));
+  .then(() => console.log("[Tickets] Connected to MongoDB"))
+  .catch((err) => console.log(`[Tickets] DB connection error - ${err}`));
 
 // Run the server
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+  console.log(`[Tickets] Listening on port ${port}`);
 });
