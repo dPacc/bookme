@@ -42,8 +42,9 @@ ticketSchema.methods.isReserved = async function () {
   // Run query to look at all orders, find order where the
   // ticket is the one we just found and the order status is not cancelled
   // If we find an order from that, means the ticket is reserved
+  // this === the ticket document that we just called 'isReserved' on
   const existingOrder = await Order.findOne({
-    ticket: this,
+    ticket: this.id,
     status: {
       $in: [
         OrderStatus.Created,
@@ -56,6 +57,6 @@ ticketSchema.methods.isReserved = async function () {
   return !!existingOrder;
 };
 
-const Ticket = mongoose.model<TicketDoc, TicketModel>("Order", ticketSchema);
+const Ticket = mongoose.model<TicketDoc, TicketModel>("Ticket", ticketSchema);
 
 export { Ticket };
