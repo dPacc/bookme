@@ -15,3 +15,6 @@ tickets/node_modules
 
 # NATS test
 nats-test/node_modules
+
+# Orders server
+orders/node_modules
