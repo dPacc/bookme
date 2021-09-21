@@ -4,7 +4,7 @@ import { NotFoundError } from "@netraga/common";
 
 const router = express.Router();
 
-// Route
+// Get a ticket by ID
 router.get("/api/tickets/:id", async (req: Request, res: Response) => {
   const ticket = await Ticket.findById(req.params.id);
 
@@ -16,4 +16,4 @@ router.get("/api/tickets/:id", async (req: Request, res: Response) => {
   res.send(ticket);
 });
 
-export { router as showTicketRouter };
+export { router as getTicketRouter };

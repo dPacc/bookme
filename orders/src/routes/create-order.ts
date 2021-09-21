@@ -2,9 +2,9 @@ import express, { Request, Response } from "express";
 
 const router = express.Router();
 
-// Route
+// Create an order
 router.post("/api/orders", async (req: Request, res: Response) => {
   res.send({});
 });
 
-export { router as newOrderRouter };
+export { router as createOrderRouter };

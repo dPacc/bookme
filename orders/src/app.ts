@@ -3,10 +3,10 @@ import "express-async-errors";
 import cookieSession from "cookie-session";
 import { errorHandler, NotFoundError, currentUser } from "@netraga/common";
 
-import { newOrderRouter } from "./routes/new";
-import { showOrderRouter } from "./routes/show";
-import { deleteOrderRouter } from "./routes/delete";
-import { indexOrderRouter } from "./routes/index";
+import { createOrderRouter } from "./routes/create-order";
+import { getOrderRouter } from "./routes/get-order";
+import { getOrdersRouter } from "./routes/get-orders";
+import { deleteOrderRouter } from "./routes/delete-order";
 
 // Create the app instance
 const app = express();
@@ -23,10 +23,10 @@ app.use(
 app.use(currentUser);
 
 // Routes
-app.use(newOrderRouter);
-app.use(showOrderRouter);
+app.use(createOrderRouter);
+app.use(getOrderRouter);
+app.use(getOrdersRouter);
 app.use(deleteOrderRouter);
-app.use(indexOrderRouter);
 
 app.all("*", () => {
   throw new NotFoundError();

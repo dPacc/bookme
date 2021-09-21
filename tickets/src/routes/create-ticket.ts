@@ -7,7 +7,7 @@ import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
 
-// Route
+// Create a new ticket
 router.post(
   "/api/tickets",
   requireAuth,
