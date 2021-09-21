@@ -13,8 +13,29 @@ if (!process.env.JWT_KEY) {
 if (!process.env.MONGO_URI) {
   throw new Error("TICKETS MONGO URI NOT SET!");
 }
+
+// Check for tickets NATS Cluster ID
+if (!process.env.NATS_CLUSTER_ID) {
+  throw new Error("TICKETS MONGO URI NOT SET!");
+}
+
+// Check for tickets NATS Client ID
+if (!process.env.NATS_CLIENT_ID) {
+  throw new Error("TICKETS MONGO URI NOT SET!");
+}
+
+// Check for tickets NATS URL
+if (!process.env.NATS_URL) {
+  throw new Error("TICKETS MONGO URI NOT SET!");
+}
+
 // Connect to NATS
-natsWrapper.connect("bookme", "asdeasd", "http://nats-srv:4222");
+natsWrapper.connect(
+  process.env.NATS_CLUSTER_ID,
+  process.env.NATS_CLIENT_ID,
+  process.env.NATS_URL
+);
+
 natsWrapper.client.on("close", () => {
   console.log("NATS connection closed");
   process.exit();
