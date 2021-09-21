@@ -6,18 +6,18 @@ export { OrderStatus };
 
 // An interface that describes properties required to create a new order
 interface OrderAttrs {
-  userId: string;
+  userId: String;
   status: OrderStatus;
   expiresAt: Date;
-  ticketId: TicketDoc;
+  ticket: TicketDoc;
 }
 
 // An interface that describes properties that order document has
 interface OrderDoc extends mongoose.Document {
-  userId: string;
+  userId: String;
   status: OrderStatus;
   expiresAt: Date;
-  ticketId: TicketDoc;
+  ticket: TicketDoc;
 }
 
 // An interface that describes properties that order model has
@@ -35,7 +35,7 @@ const orderSchema = new mongoose.Schema(
       default: OrderStatus.Created,
     },
     expiresAt: { type: mongoose.Schema.Types.Date },
-    ticketId: { type: mongoose.Schema.Types.ObjectId, ref: "Ticket" },
+    ticket: { type: mongoose.Schema.Types.ObjectId, ref: "Ticket" },
   },
   {
     toJSON: {
