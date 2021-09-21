@@ -4,6 +4,7 @@ import request from "supertest";
 import { app } from "../app";
 import jwt from "jsonwebtoken";
 
+jest.mock("../nats-wrapper");
 declare global {
   var signin: () => string[];
 }

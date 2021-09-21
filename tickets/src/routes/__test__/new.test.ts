@@ -72,24 +72,22 @@ it("returns an error if an invalid price is provided", async () => {
 // Test new ticket create
 it("creates a ticket with valid inputs", async () => {
   let tickets = await Ticket.find({});
-
-  // There should be no tickets initially in the collection
   expect(tickets.length).toEqual(0);
 
-  const title = "wutt";
+  const title = "asdfgkjf";
 
   await request(app)
     .post("/api/tickets")
     .set("Cookie", global.signin())
     .send({
       title,
-      price: 45,
+      price: 20,
     })
     .expect(201);
 
-  // One ticket should now be present in the collection
   tickets = await Ticket.find({});
+
   expect(tickets.length).toEqual(1);
+  expect(tickets[0].price).toEqual(20);
   expect(tickets[0].title).toEqual(title);
-  expect(tickets[0].price).toEqual(45);
 });
