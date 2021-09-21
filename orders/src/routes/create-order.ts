@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
 import express, { Request, Response } from "express";
+import mongoose from "mongoose";
 import {
   requireAuth,
   validateRequest,
@@ -18,6 +18,7 @@ const EXPIRATION_WINDOW_SECONDS = 15 * 60;
 // Create an order
 router.post(
   "/api/orders",
+  requireAuth,
   [
     body("ticketId")
       .not()
@@ -43,7 +44,7 @@ router.post(
       throw new BadRequestError("Ticket is already reserved");
     }
 
-    // Calculate expiration date for the
+    // Calculate expiration date for the order
     const expiration = new Date();
     expiration.setSeconds(expiration.getSeconds() + EXPIRATION_WINDOW_SECONDS);
 
