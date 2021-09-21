@@ -28,6 +28,7 @@ beforeAll(async () => {
 
 // A hook that runs before all tests in the suite
 beforeEach(async () => {
+  jest.clearAllMocks();
   // Drop the database before each test
   const collections = await mongoose.connection.db.collections();
 
