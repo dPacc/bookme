@@ -6,15 +6,16 @@ A ticket booking micro-service application
 
 ## Tech Stack
 
-- Server: ExpressJS
-- Client: NextJS
-- Database: MongoDB, Redis
-- Event Streaming: NATS (Event Bus)
-- Dev Ops: Docker, Kubernetes
+- **Server**: ExpressJS
+- **Client**: NextJS
+- **Database**: MongoDB, Redis
+- **Event Streaming**: NATS (Event Bus)
+- **Dev-Ops**: Docker, Kubernetes, Skaffold
+- **Testing**: Jest
 
 ## Design
 
-**Resources**(models)
+**Models**
 
 ![resources](./images/resources.png)
 
@@ -25,3 +26,5 @@ A ticket booking micro-service application
 **Events**
 
 ![events](./images/events.png)
+
+![events](./images/eventsPublished.png)
