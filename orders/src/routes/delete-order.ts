@@ -7,6 +7,10 @@ import {
 } from "@netraga/common";
 import { Order } from "../models/order";
 
+// Events
+import { OrderCancelledPublisher } from "../events/publishers/order-cancelled-publisher";
+import { natsWrapper } from "../nats-wrapper";
+
 const router = express.Router();
 
 // Delete an order
@@ -27,7 +31,13 @@ router.delete(
     order.status = OrderStatus.Cancelled;
     await order.save();
 
-    // Publish an event saying this was cancelled
+    // Publish an event saying this was "cancelled"
+    new OrderCancelledPublisher(natsWrapper.client).publish({
+      id: order.id,
+      ticket: {
+        id: order.ticket.id,
+      },
+    });
 
     res.status(204).send(order);
   }
