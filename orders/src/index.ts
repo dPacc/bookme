@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import { app } from "./app";
 import { natsWrapper } from "./nats-wrapper";
+import { TicketCreatedListener } from "./events/listeners/ticket-created-listener";
+import { TicketUpdatedListener } from "./events/listeners/ticket-updated-listener";
 
 const port = process.env.PORT || 3000;
 
@@ -40,6 +42,10 @@ natsWrapper.client.on("close", () => {
   console.log("[Orders] NATS connection closed");
   process.exit();
 });
+
+// Listen to Ticket created and updated events
+new TicketCreatedListener(natsWrapper.client).listen();
+new TicketUpdatedListener(natsWrapper.client).listen();
 
 process.on("SIGINT", () => {
   natsWrapper.client.close();
