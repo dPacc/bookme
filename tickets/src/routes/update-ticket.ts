@@ -4,6 +4,7 @@ import {
   validateRequest,
   requireAuth,
   NotAuthorizedError,
+  BadRequestError,
 } from "@netraga/common";
 import { Ticket } from "../models/ticket";
 import { body } from "express-validator";
@@ -28,6 +29,11 @@ router.put(
 
     if (!ticket) {
       throw new NotFoundError();
+    }
+
+    // Cannot update ticket that is reserved
+    if (ticket.orderId) {
+      throw new BadRequestError("Cannot edit reserved ticket");
     }
 
     if (ticket.userId !== req.currentUser!.id) {
