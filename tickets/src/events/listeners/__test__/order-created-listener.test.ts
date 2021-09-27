@@ -54,12 +54,21 @@ it("sets the userId of the ticket", async () => {
 
 // Test acks the message
 it("acks the message", async () => {
-  // Create the listener
-  const { listener, ticket, data, msg } = await setup();
+  const { listener, data, msg } = await setup();
 
   // Call the onMessage function with the data object + message object
   await listener.onMessage(data, msg);
 
   // Write assertions to make sure the ack function is called
   expect(msg.ack).toHaveBeenCalled();
+});
+
+// Test publishes a ticket updated event
+it("publishes a ticket updated event", async () => {
+  const { listener, data, msg } = await setup();
+
+  // Call the onMessage function with the data object + message object
+  await listener.onMessage(data, msg);
+
+  expect(natsWrapper.client.publish).toHaveBeenCalled();
 });
