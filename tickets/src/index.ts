@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import { app } from "./app";
+import { OrderCancelledListener } from "./events/listeners/order-cancelled-listener";
+import { OrderCreatedListener } from "./events/listeners/order-created-listener";
 import { natsWrapper } from "./nats-wrapper";
 
 const port = process.env.PORT || 3000;
@@ -48,6 +50,10 @@ process.on("SIGINT", () => {
 process.on("SIGTERM", () => {
   natsWrapper.client.close();
 });
+
+// Order created and cancelled listeners
+new OrderCreatedListener(natsWrapper.client).listen();
+new OrderCancelledListener(natsWrapper.client).listen();
 
 // Connect to the database
 mongoose
