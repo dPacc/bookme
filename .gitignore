@@ -24,3 +24,6 @@ concr-test/node_modules
 
 # Expiration server
 expiration/node_modules
+
+# Payments server
+payments/node_modules
