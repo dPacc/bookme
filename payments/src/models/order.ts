@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 import { OrderStatus } from "@netraga/common";
 
 interface OrderAttrs {
@@ -44,6 +45,10 @@ const orderSchema = new mongoose.Schema(
     },
   }
 );
+
+// Update if current
+orderSchema.set("versionKey", "version");
+orderSchema.plugin(updateIfCurrentPlugin);
 
 orderSchema.statics.build = (attrs: OrderAttrs) => {
   return new Order({
