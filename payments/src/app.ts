@@ -2,6 +2,7 @@ import express from "express";
 import "express-async-errors";
 import cookieSession from "cookie-session";
 import { errorHandler, NotFoundError, currentUser } from "@netraga/common";
+import { createChargeRouter } from "./routes/create-charge";
 
 // Create the app instance
 const app = express();
@@ -18,6 +19,7 @@ app.use(
 app.use(currentUser);
 
 // Routes
+app.use(createChargeRouter);
 
 app.all("*", () => {
   throw new NotFoundError();
